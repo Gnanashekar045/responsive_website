@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart Example</title>
+  <style>
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .cart-item button {
+      margin-left: 10px;
+    }
+    #cart {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+  
+  <div id="products">
+    <h2>Products</h2>
+    <div>
+      <span>Product 1 - $10</span>
+      <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+    </div>
+    <div>
+      <span>Product 2 - $15</span>
+      <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+    </div>
+    <div>
+      <span>Product 3 - $20</span>
+      <button onclick="addToCart('Product 3', 20)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div id="cart-total"></div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(productName, productPrice) {
+      const product = { name: productName, price: productPrice };
+      cart.push(product);
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name} - $${item.price}</span>
+            <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+      });
+
+      cartTotal.innerHTML = `Total: $${total}`;
+    }
+  </script>
+</body>
+</html>
