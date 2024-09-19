@@ -8,7 +8,7 @@
     .cart-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 12px
+      margin-bottom: 14px
     }
     .cart-item button {
       margin-left: 10px;
