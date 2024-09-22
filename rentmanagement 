@@ -22,7 +22,7 @@
         }
 
         .house-list {
-            flex: 1;
+            flex: 2;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
