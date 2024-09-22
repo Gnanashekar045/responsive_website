@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Alerts</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e3f2fd;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .house-list {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .details-box {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .house-item {
+            padding: 15px;
+            background-color: #bbdefb;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .house-item:hover {
+            background-color: #90caf9;
+            transform: scale(1.02);
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;
+            }
+            .house-list {
+                border-right: 1px solid #e0e0e0;
+                margin-bottom: 0;
+            }
+            .details-box {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="house-list" id="houseList">
+            <h2>All Houses</h2>
+        </div>
+        <div class="details-box" id="detailsBox">
+            <h2>House Details</h2>
+            <p>Select a house to see the details.</p>
+        </div>
+    </div>
+
+    <script>
+        const housesData = [
+            { id: 1, name: 'House 6', dueDate: 5, currentBill: '$120', keyNumber: 'A101' },
+            { id: 2, name: 'House 5', dueDate: 10, currentBill: '$150', keyNumber: 'A102' },
+            { id: 3, name: 'House 4', dueDate: 20, currentBill: '$110', keyNumber: 'A103' },
+            { id: 4, name: 'House 3', dueDate: 24, currentBill: '$180', keyNumber: 'A104' },
+            { id: 5, name: 'House 2', dueDate: 6, currentBill: '$130', keyNumber: 'A105' },
+            { id: 6, name: 'House 1', dueDate: 10, currentBill: '$200', keyNumber: 'A106' }
+        ];
+
+        const houseListElement = document.getElementById('houseList');
+        const detailsBoxElement = document.getElementById('detailsBox');
+
+        const calculateDaysLeft = (dueDate) => {
+            const today = new Date();
+            const rentDue = new Date(today.getFullYear(), today.getMonth(), dueDate);
+            const diffInDays = Math.ceil((rentDue - today) / (1000 * 60 * 60 * 24));
+            return diffInDays >= 0 ? diffInDays : 'Due Date Passed';
+        };
+
+        const displayHouses = () => {
+            housesData.forEach(house => {
+                const houseItem = document.createElement('div');
+                houseItem.className = 'house-item';
+                houseItem.innerText = house.name;
+                houseItem.onclick = () => displayHouseDetails(house);
+                houseListElement.appendChild(houseItem);
+            });
+        };
+
+        const displayHouseDetails = (house) => {
+            detailsBoxElement.innerHTML = `
+                <h2>House Details</h2>
+                <p><strong>${house.name}</strong></p>
+                <p>Current Bill: ${house.currentBill}</p>
+                <p>Key Number: ${house.keyNumber}</p>
+                <h3>Upcoming Due Date:</h3>
+                <p>Due on: ${house.dueDate} - Days Left: ${calculateDaysLeft(house.dueDate)}</p>
+            `;
+        };
+
+        displayHouses();
+    </script>
+</body>
+</html>
