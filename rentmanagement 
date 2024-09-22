@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ko<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
         }
 
         .house-list {
-            flex: 2;
+            flex: 1;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
