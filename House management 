@@ -36,3 +36,51 @@ taskManager.addTask('Clean the living room', 'John', '2024-09-25');
 taskManager.addTask('Do the laundry', 'Jane', '2024-09-26');
 
 console.log(taskManager.listTasks());
+
+class Item {
+    constructor(name, quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    updateQuantity(amount) {
+        this.quantity += amount;
+    }
+}
+
+class InventoryManager {
+    constructor() {
+        this.items = [];
+    }
+
+    addItem(name, quantity) {
+        const item = new Item(name, quantity);
+        this.items.push(item);
+    }
+
+    updateItemQuantity(name, amount) {
+        const item = this.items.find(item => item.name === name);
+        if (item) {
+            item.updateQuantity(amount);
+        } else {
+            console.log('Item not found.');
+        }
+    }
+
+    removeItem(name) {
+        this.items = this.items.filter(item => item.name !== name);
+    }
+
+    listItems() {
+        return this.items;
+    }
+}
+
+// Example usage:
+const inventory = new InventoryManager();
+inventory.addItem('Milk', 2);
+inventory.addItem('Detergent', 1);
+
+console.log(inventory.listItems());
+inventory.updateItemQuantity('Milk', -1);
+console.log(inventory.listItems());
