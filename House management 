@@ -84,3 +84,39 @@ inventory.addItem('Detergent', 1);
 console.log(inventory.listItems());
 inventory.updateItemQuantity('Milk', -1);
 console.log(inventory.listItems());
+
+
+
+class Event {
+    constructor(title, date, description) {
+        this.title = title;
+        this.date = date;
+        this.description = description;
+    }
+}
+
+class Calendar {
+    constructor() {
+        this.events = [];
+    }
+
+    addEvent(title, date, description) {
+        const newEvent = new Event(title, date, description);
+        this.events.push(newEvent);
+    }
+
+    listEvents() {
+        return this.events;
+    }
+
+    removeEvent(title) {
+        this.events = this.events.filter(event => event.title !== title);
+    }
+}
+
+// Example usage:
+const calendar = new Calendar();
+calendar.addEvent('Family Dinner', '2024-09-25', 'Dinner with the whole family');
+calendar.addEvent('Grocery Shopping', '2024-09-24', 'Restock groceries for the week');
+
+console.log(calendar.listEvents());
