@@ -1,0 +1,38 @@
+class Task {
+    constructor(name, assignedTo, dueDate) {
+        this.name = name;
+        this.assignedTo = assignedTo;
+        this.dueDate = dueDate;
+        this.completed = false;
+    }
+
+    completeTask() {
+        this.completed = true;
+    }
+}
+
+class TaskManager {
+    constructor() {
+        this.tasks = [];
+    }
+
+    addTask(name, assignedTo, dueDate) {
+        const newTask = new Task(name, assignedTo, dueDate);
+        this.tasks.push(newTask);
+    }
+
+    removeTask(taskName) {
+        this.tasks = this.tasks.filter(task => task.name !== taskName);
+    }
+
+    listTasks() {
+        return this.tasks;
+    }
+}
+
+// Example usage:
+const taskManager = new TaskManager();
+taskManager.addTask('Clean the living room', 'John', '2024-09-25');
+taskManager.addTask('Do the laundry', 'Jane', '2024-09-26');
+
+console.log(taskManager.listTasks());
