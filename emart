@@ -4,7 +4,7 @@ const product = {
   name: "Wireless Headphones",
   price: 150.00,
   category: "Electronics",
-  description: "High-quality wireless car headphones with noise cancellation.",
+  description: "High-quality wireless car use headphones with noise cancellation.",
   inStock: true,
   discount: 10, // 10% discount
   
