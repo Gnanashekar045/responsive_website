@@ -1,0 +1,28 @@
+// E-commerce product object
+const product = {
+  id: 101,
+  name: "Wireless Headphones",
+  price: 150.00,
+  category: "Electronics",
+  description: "High-quality wireless headphones with noise cancellation.",
+  inStock: true,
+  discount: 10, // 10% discount
+  
+  // Method to calculate final price after discount
+  getDiscountedPrice: function() {
+    return this.price - (this.price * (this.discount / 100));
+  },
+
+  // Method to display product details
+  displayProductInfo: function() {
+    console.log(`Product: ${this.name}`);
+    console.log(`Category: ${this.category}`);
+    console.log(`Description: ${this.description}`);
+    console.log(`Price: $${this.price}`);
+    console.log(`Discounted Price: $${this.getDiscountedPrice()}`);
+    console.log(`In Stock: ${this.inStock ? "Yes" : "No"}`);
+  }
+};
+
+// Display product information
+product.displayProductInfo();
