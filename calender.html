@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #calendar {
+            width: 300px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #calendar header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #calendar header h2 {
+            margin: 0;
+        }
+        #calendar table {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+        #calendar table th, #calendar table td {
+            padding: 5px;
+        }
+        #calendar table th {
+            color: #777;
+        }
+        #calendar .prev, #calendar .next {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="calendar">
+        <header>
+            <span class="prev">❮</span>
+            <h2 id="month-year"></h2>
+            <span class="next">❯</span>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
+    </div>
+
+    <script src="calendar.js"></script>
+</body>
+</html>
