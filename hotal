@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;  
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .rooms {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hotel Management System</h1>
+
+    <!-- Add Room Form -->
+    <div class="form-section">
+        <h3>Add Room</h3>
+        <label for="roomNumber">Room Number:</label>
+        <input type="number" id="roomNumber" placeholder="Enter Room Number">
+        
+        <label for="roomType">Room Type:</label>
+        <select id="roomType">
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Suite">Suite</option>
+        </select>
+
+        <label for="roomPrice">Price per Night:</label>
+        <input type="number" id="roomPrice" placeholder="Enter Room Price">
+
+        <button onclick="addRoom()">Add Room</button>
+    </div>
+
+    <!-- Check In Guest Form -->
+    <div class="form-section">
+        <h3>Check In Guest</h3>
+        <label for="guestName">Guest Name:</label>
+        <input type="text" id="guestName" placeholder="Enter Guest Name">
+
+        <label for="checkInRoomType">Room Type:</label>
+        <select id="checkInRoomType">
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Suite">Suite</option>
+        </select>
+
+        <button onclick="checkInGuest()">Check In Guest</button>
+    </div>
+
+    <!-- Check Out Guest Form -->
+    <div class="form-section">
+        <h3>Check Out Guest</h3>
+        <label for="checkOutRoomNumber">Room Number:</label>
+        <input type="number" id="checkOutRoomNumber" placeholder="Enter Room Number">
+
+        <button onclick="checkOutGuest()">Check Out Guest</button>
+    </div>
+
+    <!-- List of Available Rooms -->
+    <div class="rooms">
+        <h3>Available Rooms</h3>
+        <div id="availableRooms"></div>
+    </div>
+</div>
+
+<script>
+    class Room {
+        constructor(roomNumber, type, price) {
+            this.roomNumber = roomNumber;
+            this.type = type;
+            this.price = price;
+            this.isAvailable = true;
+            this.guest = null;
+        }
+
+        checkIn(guest) {
+            if (this.isAvailable) {
+                this.guest = guest;
+                this.isAvailable = false;
+                alert(`Guest ${guest.name} checked into Room ${this.roomNumber}`);
+            } else {
+                alert(`Room ${this.roomNumber} is not available.`);
+            }
+        }
+
+        checkOut() {
+            if (!this.isAvailable) {
+                alert(`Guest ${this.guest.name} checked out of Room ${this.roomNumber}`);
+                this.guest = null;
+                this.isAvailable = true;
+            } else {
+                alert(`Room ${this.roomNumber} is already vacant.`);
+            }
+        }
+    }
+
+    class Hotel {
+        constructor(name) {
+            this.name = name;
+            this.rooms = [];
+        }
+
+        addRoom(room) {
+            this.rooms.push(room);
+            this.listAvailableRooms();
+        }
+
+        findAvailableRoom(type) {
+            return this.rooms.find(room => room.type === type && room.isAvailable);
+        }
+
+        checkInGuest(guest, type) {
+            const availableRoom = this.findAvailableRoom(type);
+            if (availableRoom) {
+                availableRoom.checkIn(guest);
+                this.listAvailableRooms();
+            } else {
+                alert(`No available ${type} rooms at the moment.`);
+            }
+        }
+
+        checkOutGuest(roomNumber) {
+            const room = this.rooms.find(room => room.roomNumber == roomNumber);
+            if (room) {
+                room.checkOut();
+                this.listAvailableRooms();
+            } else {
+                alert(`Room ${roomNumber} not found.`);
+            }
+        }
+
+        listAvailableRooms() {
+            const availableRoomsDiv = document.getElementById('availableRooms');
+            availableRoomsDiv.innerHTML = '';
+
+            this.rooms.forEach(room => {
+                if (room.isAvailable) {
+                    availableRoomsDiv.innerHTML += `<p>Room ${room.roomNumber} - ${room.type} - $${room.price}/night</p>`;
+                }
+            });
+
+            if (availableRoomsDiv.innerHTML === '') {
+                availableRoomsDiv.innerHTML = '<p>No rooms available</p>';
+            }
+        }
+    }
+
+    class Guest {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    const myHotel = new Hotel('Grand Palace');
+
+    function addRoom() {
+        const roomNumber = document.getElementById('roomNumber').value;
+        const roomType = document.getElementById('roomType').value;
+        const roomPrice = document.getElementById('roomPrice').value;
+
+        if (roomNumber && roomType && roomPrice) {
+            const room = new Room(roomNumber, roomType, roomPrice);
+            myHotel.addRoom(room);
+            alert(`Room ${roomNumber} added!`);
+        } else {
+            alert('Please fill out all fields.');
+        }
+    }
+
+    function checkInGuest() {
+        const guestName = document.getElementById('guestName').value;
+        const roomType = document.getElementById('checkInRoomType').value;
+
+        if (guestName && roomType) {
+            const guest = new Guest(guestName);
+            myHotel.checkInGuest(guest, roomType);
+        } else {
+            alert('Please enter guest name and select a room type.');
+        }
+    }
+
+    function checkOutGuest() {
+        const roomNumber = document.getElementById('checkOutRoomNumber').value;
+
+        if (roomNumber) {
+            myHotel.checkOutGuest(roomNumber);
+        } else {
+            alert('Please enter a room number.');
+        }
+    }
+</script>
+
+</body>
+</html>
