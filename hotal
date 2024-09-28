@@ -18,7 +18,7 @@
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
         input, select, button {
             padding: 8px;
