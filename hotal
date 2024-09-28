@@ -11,10 +11,10 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0px;
         }
         .form-section {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         label {
             display: block;
