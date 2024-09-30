@@ -16,7 +16,7 @@
             font-size: 18px;
         }
         #display {
-            width: 190px;
+            width: 090px;
             height: 45px;
             font-size: 22px;
         }
