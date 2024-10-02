@@ -14,7 +14,7 @@
             margin: auto;
         }
         .room-input {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         button {
             margin-top: 20px;
