@@ -1,0 +1,101 @@
+class Room {
+    constructor(number, type, price, isBooked = false) {
+        this.number = number;
+        this.type = type;
+        this.price = price;
+        this.isBooked = isBooked;
+    }
+
+    bookRoom() {
+        if (!this.isBooked) {
+            this.isBooked = true;
+            console.log(`Room ${this.number} has been booked.`);
+        } else {
+            console.log(`Room ${this.number} is already booked.`);
+        }
+    }
+
+    releaseRoom() {
+        if (this.isBooked) {
+            this.isBooked = false;
+            console.log(`Room ${this.number} is now available.`);
+        } else {
+            console.log(`Room ${this.number} is already available.`);
+        }
+    }
+
+    getDetails() {
+        return `Room ${this.number}: ${this.type}, Price: $${this.price}, Available: ${!this.isBooked}`;
+    }
+}
+
+class Hotel {
+    constructor(name) {
+        this.name = name;
+        this.rooms = [];
+    }
+
+    addRoom(room) {
+        this.rooms.push(room);
+    }
+
+    findAvailableRoom(type) {
+        const availableRooms = this.rooms.filter(room => room.type === type && !room.isBooked);
+        if (availableRooms.length > 0) {
+            console.log(`Available ${type} rooms:`);
+            availableRooms.forEach(room => console.log(room.getDetails()));
+        } else {
+            console.log(`No available ${type} rooms.`);
+        }
+        return availableRooms;
+    }
+
+    bookRoom(roomNumber) {
+        const room = this.rooms.find(room => room.number === roomNumber);
+        if (room) {
+            room.bookRoom();
+        } else {
+            console.log(`Room ${roomNumber} not found.`);
+        }
+    }
+
+    releaseRoom(roomNumber) {
+        const room = this.rooms.find(room => room.number === roomNumber);
+        if (room) {
+            room.releaseRoom();
+        } else {
+            console.log(`Room ${roomNumber} not found.`);
+        }
+    }
+
+    generateReport() {
+        console.log(`Hotel ${this.name} Room Report:`);
+        this.rooms.forEach(room => {
+            console.log(room.getDetails());
+        });
+    }
+}
+
+// Create a new hotel
+const myHotel = new Hotel('Sunrise Hotel');
+
+// Add rooms to the hotel
+myHotel.addRoom(new Room(101, 'Single', 100));
+myHotel.addRoom(new Room(102, 'Single', 100));
+myHotel.addRoom(new Room(201, 'Double', 150));
+myHotel.addRoom(new Room(202, 'Double', 150));
+
+// Check available rooms
+myHotel.findAvailableRoom('Single');
+
+// Book a room
+myHotel.bookRoom(101);
+
+// Check availability again
+myHotel.findAvailableRoom('Single');
+
+// Release a room
+myHotel.releaseRoom(101);
+
+// Generate report
+myHotel.generateReport();
