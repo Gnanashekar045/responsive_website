@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .room-input {
+            margin-bottom: 10px;
+        }
+        button {
+            margin-top: 10px;
+        }
+        .report {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hotel Management System</h1>
+
+        <!-- Room Management -->
+        <h3>Room Operations</h3>
+        <div class="room-input">
+            <label for="roomNumber">Room Number:</label>
+            <input type="number" id="roomNumber">
+        </div>
+        <button onclick="bookRoom()">Book Room</button>
+        <button onclick="releaseRoom()">Release Room</button>
+
+        <!-- Check Availability -->
+        <h3>Check Room Availability</h3>
+        <div class="room-input">
+            <label for="roomType">Room Type:</label>
+            <select id="roomType">
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+            </select>
+        </div>
+        <button onclick="checkAvailability()">Check Availability</button>
+
+        <!-- Generate Report -->
+        <h3>Room Report</h3>
+        <button onclick="generateReport()">Generate Report</button>
+
+        <!-- Display results -->
+        <div class="report" id="report">
+            <!-- Room details will be displayed here -->
+        </div>
+    </div>
+
+    <script src="hotel.js"></script>
+</body>
+</html>
