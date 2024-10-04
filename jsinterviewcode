@@ -18,3 +18,14 @@
     console.log(findMax(numbers));
 </script>
 
+<script>
+    function reverseString(str) {
+        return str.split('').reverse().join('');
+    }
+
+    const greeting = "Hello, World!";
+
+    console.log(reverseString(greeting));
+</script>
+
+
