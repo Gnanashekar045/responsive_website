@@ -58,5 +58,28 @@
     console.log(sumArray(numbers)); // 15
 </script>
 
+<script>
+    function countVowels(str) {
+        const vowels = 'aeiouAEIOU';
+        return Array.from(str).filter(char => vowels.includes(char)).length;
+    }
+
+    const sentence = "Hello, World!";
+
+    console.log(countVowels(sentence)); // 3
+</script>
+
+<script>
+    function countVowels(str) {
+        const vowels = 'aeiouAEIOU';
+        return Array.from(str).filter(char => vowels.includes(char)).length;
+    }
+
+    const sentence = "Hello, World!";
+
+    console.log(countVowels(sentence)); // 3
+</script>
+
+
 
 
