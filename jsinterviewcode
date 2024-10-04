@@ -1,0 +1,9 @@
+<script>
+    function removeStringDuplicates(arr) {
+        return [...new Set(arr)];
+    }
+
+    const fruits = ["apple", "banana", "apple", "orange", "banana", "grape"];
+
+    console.log(removeStringDuplicates(fruits));
+</script>
