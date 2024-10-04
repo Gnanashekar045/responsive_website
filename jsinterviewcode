@@ -7,3 +7,14 @@
 
     console.log(removeStringDuplicates(fruits));
 </script>
+
+<script>
+    function findMax(arr) {
+        return Math.max(...arr);
+    }
+
+    const numbers = [10, 20, 5, 45, 99, 2];
+
+    console.log(findMax(numbers));
+</script>
+
