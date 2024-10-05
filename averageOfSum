@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function averageOfTotal(numbers) {
+            let sum = 0;
+            for (let i = 0; i < numbers.length; i++) { // loop through the array
+                sum += numbers[i]; // add each element to the sum
+            }
+
+            return sum / numbers.length; // calculate the average
+        }
+
+        const digits = [3, 6, 7, 8, 8, 3, 6, 9, 5, 7, 8]; // sample array
+
+        console.log(averageOfTotal(digits)); // should output the average
+    </script>
+</body>
+
+</html>
