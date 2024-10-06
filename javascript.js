@@ -21,7 +21,7 @@ function renderCalendar(month, year) {
    
     let daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Update month-year display
+   
     monthYear.textContent = `${months[month]} ${year}`;
 
     // Create table rows and cells
