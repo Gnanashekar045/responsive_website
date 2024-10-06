@@ -18,7 +18,7 @@ function renderCalendar(month, year) {
     
     let firstDay = new Date(year, month, 1).getDay();
 
-    // Days in month
+   
     let daysInMonth = new Date(year, month + 1, 0).getDate();
 
     // Update month-year display
