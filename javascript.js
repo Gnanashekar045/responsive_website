@@ -15,7 +15,7 @@ const months = [
 function renderCalendar(month, year) {
     calendar.innerHTML = '';  // Clear previous calendar
 
-    // First day of the month
+    
     let firstDay = new Date(year, month, 1).getDay();
 
     // Days in month
