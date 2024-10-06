@@ -71,5 +71,5 @@ function changeMonth(direction) {
 prevBtn.addEventListener('click', () => changeMonth(-1));
 nextBtn.addEventListener('click', () => changeMonth(1));
 
-// Initial render
+
 renderCalendar(currentMonth, currentYear);
