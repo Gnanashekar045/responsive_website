@@ -24,7 +24,7 @@ function renderCalendar(month, year) {
    
     monthYear.textContent = `${months[month]} ${year}`;
 
-    // Create table rows and cells
+    
     let date = 1;
     for (let i = 0; i < 6; i++) {
         let row = document.createElement('tr');
