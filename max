@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function findMaxNo(arr) {
+            let max = arr[0]
+            for (let i = 1; i < arr.length; i++) {
+                if(arr[i] > max) {
+                    max = arr[i]
+                }
+            }
+            return max
+        }
+
+        const numbers = [4, 5, 6, 7, 8, 9, 4]
+        console.log(findMaxNo(numbers))
+    </script>
+</body>
+
+</html>
