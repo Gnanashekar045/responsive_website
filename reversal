@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Number</title>
+</head>
+<body>
+    <script>
+        function reverseNo(num) {
+            let rev = 0;
+            let rem = 0;
+            while (num > 0) {
+                rem = num % 10;
+                rev = (rev * 10) + rem;
+                num = parseInt(num / 10);
+            }
+            return rev; // Return the reversed number
+        }
+
+        let num = 3467;
+        let reversedNumber = reverseNo(num); // Call the function and store the result
+        console.log(reversedNumber); // Log the reversed number
+    </script>
+</body>
+</html>
