@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Sequence</title>
+</head>
+<body>
+    <script>
+        function fibonacciSequence(limit) {
+            let a = 0;
+            let b = 1;
+            let fn = a + b;
+            console.log(a);
+
+            do {
+                console.log(fn);
+                fn = a + b;
+                a = b;
+                b = fn;
+            } while (fn < limit);
+        }
+
+        /*let limit = parseInt(prompt("Enter Number"));*/
+        limit = 100;
+        fibonacciSequence(limit); 
+    </script>
+</body>
+</html>
