@@ -1,2 +1,2 @@
 # responsive_website
-git clone changes which thing 
+git clone changes which thing are
