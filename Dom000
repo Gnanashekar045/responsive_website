@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        label.form-labet {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="Password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Gender" class="form-label">Gender</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Gender" value="Male">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Gender" value="Female">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Gender" value="Others">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                Others
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Subjects</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="HTML" name="Select">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                HTML
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="JavaScript" name="Select">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                JavaScript
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="CSS" name="Select">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                CSS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="JsReact" name="Select">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                JsReact
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Select State</label>
+                        <select class="form-select" id="state">
+                            <option selected>Select State</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="TamilNadu">TamilNadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="AP">AP</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date of birth</label>
+                        <input type="date" class="form-control" id="dob">
+                    </div>
+                    <button type="button" onclick="creatUser()" id="submitbtn" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="updateUser()" id="updatebtn" class="btn btn-primary" style="display:none;">Update</button>
+                </form>
+            </div>
+            <div class="col">
+                <table class="table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Gender</th>
+                            <th>Select</th>
+                            <th>States</th>
+                            <th>DOB</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var allRadioBtns = document.getElementsByName("Gender");
+        var allCheckBoxes = document.getElementsByName("Select");
+        var users = JSON.parse(localStorage.getItem("users")) || [];
+
+        function creatUser() {
+            var user = {
+                Email: "",
+                Password: "",
+                Gender: "",
+                Select: [],
+                state: "",
+                dob: "",
+            }
+
+            for (a in user) {
+                if (a !== "Gender" && a !== "Select") {
+                    user[a] = document.getElementById(a).value;
+                } else if (a === "Gender") {
+                    for (i = 0; i < allRadioBtns.length; i++) {
+                        if (allRadioBtns[i].checked) {
+                            user[a] = allRadioBtns[i].value;
+                        }
+                    }
+                } else if (a === "Select") {
+                    for (i = 0; i < allCheckBoxes.length; i++) {
+                        if (allCheckBoxes[i].checked) {
+                            user[a].push(allCheckBoxes[i].value);
+                        }
+                    }
+                }
+            }
+
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+            readUsers();
+            clearForm();
+        }
+
+        function clearForm() {
+            var user = {
+                Email: "",
+                Password: "",
+                Gender: "",
+                Select: [],
+                state: "",
+                dob: "",
+            }
+
+            for (a in user) {
+                if (a !== "Gender" && a !== "Select") {
+                    document.getElementById(a).value = "";
+                } else {
+                    clearCheckBox();
+                    for (i = 0; i < allRadioBtns.length; i++) {
+                        allRadioBtns[i].checked = false;
+                    }
+                }
+            }
+        }
+
+        function clearCheckBox() {
+            for (i = 0; i < allCheckBoxes.length; i++) {
+                allCheckBoxes[i].checked = false;
+            }
+        }
+
+        function readUsers() {
+            document.querySelector("tbody").innerHTML = "";
+            users.forEach((usr, i) => {
+                var tr = document.createElement("tr");
+                for (a in usr) {
+                    var td = document.createElement("td");
+                    td.innerHTML = usr[a];
+                    tr.appendChild(td);
+                }
+                var edittd = document.createElement("td");
+                var editbtn = document.createElement("button");
+                editbtn.innerHTML = "Edit";
+                editbtn.setAttribute("onclick", "EditUser(" + i + ")");
+                editbtn.setAttribute("class", "btn btn-warning");
+                edittd.appendChild(editbtn);
+                tr.appendChild(edittd);
+
+                var deltd = document.createElement("td");
+                var delbtn = document.createElement("button");
+                delbtn.innerHTML = "Delete";
+                delbtn.setAttribute("onclick", "DeleteUser(" + i + ")");
+                delbtn.setAttribute("class", "btn btn-danger");
+                deltd.appendChild(delbtn);
+                tr.appendChild(deltd);
+
+                document.querySelector("tbody").appendChild(tr);
+            });
+        }
+
+        function EditUser(i) {
+            index = i;
+            var usrToBeEdit = users[i];
+            for (a in usrToBeEdit) {
+                if (a !== "Gender" && a !== "Select") {
+                    document.getElementById(a).value = usrToBeEdit[a];
+                } else if (a == "Gender") {
+                    for (var j = 0; j < allRadioBtns.length; j++) {
+                        if (allRadioBtns[j].value == usrToBeEdit.Gender) {
+                            allRadioBtns[j].checked = true;
+                        }
+                    }
+                } else if (a == "Select") {
+                    clearCheckBox();
+                    usrToBeEdit.Select.forEach((val) => {
+                        for (var k = 0; k < allCheckBoxes.length; k++) {
+                            if (allCheckBoxes[k].value == val) {
+                                allCheckBoxes[k].checked = true;
+                            }
+                        }
+                    });
+                }
+            }
+            document.getElementById("updatebtn").style.display = "block";
+            document.getElementById("submitbtn").style.display = "none";
+        }
+
+        function updateUser() {
+            var user = {
+                Email: "",
+                Password: "",
+                Gender: "",
+                Select: [],
+                state: "",
+                dob: "",
+            }
+
+            for (a in user) {
+                if (a !== "Gender" && a !== "Select") {
+                    user[a] = document.getElementById(a).value;
+                } else if (a == "Gender") {
+                    for (i = 0; i < allRadioBtns.length; i++) {
+                        if (allRadioBtns[i].checked) {
+                            user[a] = allRadioBtns[i].value;
+                        }
+                    }
+                } else if (a == "Select") {
+                    for (i = 0; i < allCheckBoxes.length; i++) {
+                        if (allCheckBoxes[i].checked) {
+                            user[a].push(allCheckBoxes[i].value);
+                        }
+                    }
+                }
+            }
+
+            users[index] = user;
+            localStorage.setItem('users', JSON.stringify(users));
+            readUsers();
+            clearForm();
+            document.getElementById("updatebtn").style.display = "none";
+            document.getElementById("submitbtn").style.display = "block";
+        }
+
+        function DeleteUser(i) {
+            users.splice(i, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+            readUsers();
+        }
+
+        readUsers();
+    </script>
+</body>
+
+</html>
