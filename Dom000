@@ -119,6 +119,7 @@
             </div>
         </div>
     </div>
+//comercial 
     <script>
         var allRadioBtns = document.getElementsByName("Gender");
         var allCheckBoxes = document.getElementsByName("Select");
