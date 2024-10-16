@@ -1,4 +1,4 @@
-// E-commerce product object
+// E-commerce product 
 const product = {
   id: 101,
   name: "Wireless Headphones",
