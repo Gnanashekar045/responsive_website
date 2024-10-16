@@ -6,7 +6,7 @@ const product = {
   category: "Electronics",
   description: "High-quality wireless car use headphones with noise cancellation that eliminates noise.",
   inStock: true,
-  discount: 10, // 10% discoun
+  discount: 10, // 10% disco
   
   // Method to calculate final price after discount
   getDiscountedPrice: function() {
