@@ -20,7 +20,7 @@
 
         const digits = [3, 6, 7, 8, 8, 3, 6, 9, 5, 7, 8]; // sample array
 
-        console.log(averageOfTotal(digits)); // should output the average
+        console.log(averageOfTotal(digits)); // should output the 
     </script>
 </body>
 
