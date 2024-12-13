@@ -12,8 +12,6 @@
         input, button {
             
             
-            
-            font-size: 18px;
         }
         #display {
             width: 190px;
