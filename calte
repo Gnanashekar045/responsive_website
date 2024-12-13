@@ -12,7 +12,7 @@
         input, button {
             
             
-            margin: 5px;
+            
             font-size: 18px;
         }
         #display {
