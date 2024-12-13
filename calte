@@ -10,7 +10,7 @@
             margin: 100px auto;
         }
         input, button {
-            width: 45px;
+            
             height: 45px;
             margin: 5px;
             font-size: 18px;
