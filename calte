@@ -9,8 +9,7 @@
             width: 200px;
             margin: 100px auto;
         }
-        input, button {
-            
+        input, button 
         }
         #display {
             width: 190px;
