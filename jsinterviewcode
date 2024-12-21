@@ -35,7 +35,7 @@
 
     const numbers = [1, 2, 3, 4, 4, 5];
 
-    console.log(hasDuplicates(numbers)); // true
+    console.log(hasDuplicates(numbers)); // 
 </script>
 
 <script>
