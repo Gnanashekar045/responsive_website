@@ -67,7 +67,8 @@
 
     const sentence = "Hello, World!";
 
-    console.log(countVowels(sentence)); // 3
+    console.log(countVowels(sentence)); //
+
 </script>
 
 <script>
