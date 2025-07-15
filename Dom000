@@ -186,6 +186,7 @@
                 allCheckBoxes[i].checked = false;
             }
         }
+//read functions//
 
         function readUsers() {
             document.querySelector("tbody").innerHTML = "";
